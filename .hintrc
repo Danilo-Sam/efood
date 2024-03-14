@@ -10,6 +10,12 @@
           "meta[name=theme-color]"
         ]
       }
+    ],
+    "axe/text-alternatives": [
+      "default",
+      {
+        "image-alt": "off"
+      }
     ]
   }
 }

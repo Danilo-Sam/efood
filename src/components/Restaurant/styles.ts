@@ -20,6 +20,7 @@ export const Infos = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
+  align-items: center;
 
   &:last-child {
     margin-right: 0px;
