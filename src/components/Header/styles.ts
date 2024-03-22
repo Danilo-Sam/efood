@@ -1,41 +1,95 @@
 import styled from 'styled-components'
-import background from '../../assets/images/backgroundImg.png'
+import backgroundHEader from '../../assets/images/backgroundImg.png'
+import { PropsHeader } from '.'
+import { Link } from 'react-router-dom'
+import { colors, breakPoints } from '../../styles'
 
-export const HeaderBar = styled.header`
-  background-image: url(${background});
+export const HeaderTitle = styled.h2`
+  font-size: 36px;
+  font-weight: 900;
+  max-width: 539px;
+  height: 84px;
+  margin: 0 auto;
+`
+export const LinkButton = styled(Link)`
+  font-size: 18px;
+  color: ${colors.textPrimary};
+`
+export const LinkA = styled.a`
+  font-size: 18px;
+  color: ${colors.textPrimary};
+  display: flex;
+  cursor: pointer;
+`
+export const HeaderBanner = styled.div<
+  Omit<PropsHeader, 'typeheader' | 'nationality' | 'restaurantname'>
+>`
+  background-image: url(${(props) => props.image});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 400px;
+  height: 280px;
   position: relative;
-  margin-botton: 56px;
-  top: 0;
-`
+  opacity: 0.5;
 
-export const Container = styled.div`
-  display: block;
-  max-width: 1024px;
-  width: 100%;
-  margin: 0 auto;
-  padding-top: 54px;
+  h2,
+  h3 {
+    color: ${colors.textSecondary};
+    font-size: 32px;
+    position: relative;
+  }
 
-  h1 {
-    display: flex;
+  h2 {
+    font-weight: 100;
+  }
 
-    img {
-      margin: 0 auto;
-    }
+  h3 {
+    position: absolute;
+    bottom: 32px;
+    font-weight: bold;
   }
 `
 
-export const HeaderTitle = styled.h2`
-  font-size: 36px;
-  font-weight: bold;
-  max-width: 539px;
-  height: 84px;
-  margin: 0 auto;
-  margin-top: 160px;
-  vertical-align: inherit;
-  text-align: center;
+export const HeaderContainer = styled.header<PropsHeader>`
+  background-image: url(${backgroundHEader});
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 56px;
+  height: ${(props) => (props.typeheader === 'normal' ? '384px' : 'auto')};
+
+  ${HeaderTitle} {
+    display: ${(props) => (props.typeheader === 'normal' ? 'flex' : 'none')};
+  }
+
+  ${LinkButton} ,${LinkA} {
+    display: ${(props) => (props.typeheader === 'normal' ? 'none' : 'initial')};
+  }
+
+  .container {
+    padding-top: 54px;
+    text-align: center;
+
+    nav {
+      margin-bottom: ${(props) =>
+        props.typeheader === 'normal' ? '130px' : '65px'};
+      display: flex;
+      align-items: center;
+      justify-content: ${(props) =>
+        props.typeheader === 'normal' ? 'center' : 'space-between'};
+      @media (max-width: ${breakPoints.tablet}) {
+        margin-bottom: 50px;
+      }
+    }
+  }
+
+  ${HeaderBanner} > .container {
+    text-align: left;
+    padding: 0;
+    padding-top: 24px;
+  }
+
+  ${HeaderBanner} {
+    display: ${(props) => (props.typeheader === 'normal' ? 'none' : 'flex')};
+  }
 `

@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { Props } from '.'
-import { colors, breakPoints } from '../../styles'
+import { PropsCard } from '.'
+import { colors, breakPoints } from '../../../styles'
 import { Link } from 'react-router-dom'
 
 export const ImageCard = styled.div<
   Omit<
-    Props,
+    PropsCard,
     'restaurant_name' | 'description' | 'score' | 'extra_content' | 'id'
   >
 >`
@@ -20,7 +20,6 @@ export const Infos = styled.div`
   position: absolute;
   top: 16px;
   right: 16px;
-  align-items: center;
 
   &:last-child {
     margin-right: 0px;

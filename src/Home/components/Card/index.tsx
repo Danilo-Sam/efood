@@ -1,4 +1,4 @@
-import star from '../../assets/images/star.png'
+import star from '../../../assets/images/star.png'
 import Tag from '../Tag'
 import {
   ButtonCard,
@@ -9,7 +9,7 @@ import {
   Score
 } from './styles'
 
-export type Props = {
+export type PropsCard = {
   id: number
   restaurant_name: string
   description: string
@@ -25,7 +25,7 @@ export default function Card({
   score,
   extra_content,
   image
-}: Props) {
+}: PropsCard) {
   return (
     <ContainerCard>
       <Infos>
