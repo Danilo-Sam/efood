@@ -31,13 +31,11 @@ export const HeaderBanner = styled.div<
   width: 100%;
   height: 280px;
   position: relative;
-  opacity: 0.5;
 
   h2,
   h3 {
     color: ${colors.textSecondary};
     font-size: 32px;
-    position: relative;
   }
 
   h2 {

@@ -6,6 +6,7 @@ import apresentacao from '../../assets/images/apresentacao.png'
 import { Product } from '../../MenuList/models'
 
 import marguerita from '../../assets/images/pizzaMarguerita.png'
+import Footer from '../../components/Footer'
 
 const listProduct: Product[] = [
   {
@@ -60,6 +61,7 @@ const Cardapio = () => (
       restaurantname={'La Dolce Vitta Trattoria'}
     />
     <List product={listProduct} />
+    <Footer />
   </>
 )
 

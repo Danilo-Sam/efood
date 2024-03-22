@@ -3,6 +3,7 @@ import RestauranteList from '../../components/RestaurantesList'
 import Produto from '../models/Produto'
 
 import sushi from '../../assets/images/sushi.png'
+import Footer from '../../components/Footer'
 
 const produtos: Produto[] = [
   {
@@ -65,6 +66,7 @@ const HomePage = () => (
   <>
     <Header typeheader="normal" />
     <RestauranteList produto={produtos} />
+    <Footer />
   </>
 )
 
