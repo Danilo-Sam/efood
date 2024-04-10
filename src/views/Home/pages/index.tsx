@@ -1,9 +1,9 @@
-import Header from '../../components/Header'
-import RestauranteList from '../../components/RestaurantesList'
+import Header from '../../../components/Header'
+import RestauranteList from '../../../components/RestaurantesList'
 import Produto from '../models/Produto'
 
-import sushi from '../../assets/images/sushi.png'
-import Footer from '../../components/Footer'
+import sushi from '../../../assets/images/sushi.png'
+import Footer from '../../../components/Footer'
 
 const produtos: Produto[] = [
   {

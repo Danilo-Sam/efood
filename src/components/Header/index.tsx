@@ -8,7 +8,7 @@ import {
   LinkButton
 } from './styles'
 
-import logo from '../../assets/images/logo.svg'
+import logo from '../../assets/icons/logo.svg'
 
 export type PropsHeader = {
   typeheader?: string

@@ -5,7 +5,7 @@ type Props = {
   title: string
   to?: string
   onclick?: () => void
-  children: string
+  children?: string
 }
 
 export const Button = ({ type, title, to, onclick, children }: Props) => {

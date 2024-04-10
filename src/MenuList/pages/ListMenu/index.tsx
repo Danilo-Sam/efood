@@ -1,12 +1,10 @@
-import Header from '../../components/Header'
+import Header from '../../../components/Header'
+import List from '../../components/List'
+import { Product } from '../../models'
+import Footer from '../../../components/Footer'
 
-import List from '../components/List'
-
-import apresentacao from '../../assets/images/apresentacao.png'
-import { Product } from '../../MenuList/models'
-
-import marguerita from '../../assets/images/pizzaMarguerita.png'
-import Footer from '../../components/Footer'
+import apresentacao from '../../../assets/images/apresentacao.png'
+import marguerita from '../../../assets/images/pizzaMarguerita.png'
 
 const listProduct: Product[] = [
   {

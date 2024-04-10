@@ -1,7 +1,7 @@
 import { RestauranteContainer, RestauranteItens } from './styles'
 
-import Card from '../../Home/components/Card'
-import Produto from '../../Home/models/Produto'
+import Card from '../../views/Home/components/Card'
+import Produto from '../../../src/views/Home/models/Produto'
 
 type Props = {
   produto: Produto[]

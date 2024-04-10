@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { PropsCard } from '.'
-import { colors, breakPoints } from '../../../styles'
+import { colors, breakPoints } from '../../../../styles'
 import { Link } from 'react-router-dom'
 
 export const ImageCard = styled.div<

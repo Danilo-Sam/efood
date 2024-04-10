@@ -1,4 +1,4 @@
-import star from '../../../assets/images/star.png'
+import star from '../../../../assets/icons/star.png'
 import Tag from '../Tag'
 import {
   ButtonCard,
