@@ -25,17 +25,9 @@ export default function ListCard({ produto }: PropsList) {
 
   seeModal()
 
-  // const addItem = () => {
-  //   dispatch(add(product))
-  //   seeModal()
-  //   dispatch(activeTheCart())
-  // }
-
   return (
     <>
       <CardList>
-        key={produto.id}
-        id={produto.id}
         <img src={produto.cardapio.foto} alt="" />
         <TitleList>{produto.cardapio.nome}</TitleList>
         <DescriptionList>{produto.cardapio.descricao}</DescriptionList>
@@ -57,11 +49,7 @@ export default function ListCard({ produto }: PropsList) {
                 <br />
                 <span>Serve: de ${produto.cardapio.porcao}</span>
               </styles.Paragraph>
-              <styles.ToAdd
-                // onClick={addItem}
-                title="Adicionar ao carrinho"
-                type="button"
-              >
+              <styles.ToAdd title="Adicionar ao carrinho" type="button">
                 Adicionar ao carrinho - R$ {produto.cardapio.preco}
               </styles.ToAdd>
               <styles.Close title="fechar" type="button" onClick={seeModal}>
