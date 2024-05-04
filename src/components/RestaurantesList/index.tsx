@@ -1,28 +1,47 @@
 import { RestauranteContainer, RestauranteItens } from './styles'
 
 import Card from '../../views/Home/components/Card'
-import Produto from '../../../src/views/Home/models/Produto'
+import { Produto } from '../../views/Home/pages'
 
 type Props = {
   produto: Produto[]
+  id: number
+  restaurant_name: string
+  description: string
+  score: number
+  extra_content: string[]
+  image: string
 }
 
-const RestauranteList = ({ produto }: Props) => (
-  <RestauranteContainer>
-    <RestauranteItens>
-      {produto.map((produto) => (
-        <Card
-          key={produto.id}
-          id={produto.id}
-          restaurant_name={produto.restaurant_name}
-          extra_content={produto.extra_content}
-          image={produto.image}
-          score={produto.score}
-          description={produto.description}
-        />
-      ))}
-    </RestauranteItens>
-  </RestauranteContainer>
-)
+const RestauranteList = ({ produto }: Props) => {
+  function tagArray(primary: string, secondary: boolean): string[] {
+    const array: string[] = []
+    if (secondary === true) {
+      array.push('Destaque da semana')
+      array.push(primary)
+      return array
+    }
+    array.push(primary)
+    return array
+  }
+
+  return (
+    <RestauranteContainer>
+      <RestauranteItens>
+        {produto.map((produto) => (
+          <Card
+            key={produto.id}
+            id={produto.id}
+            restaurant_name={produto.titulo}
+            extra_content={tagArray(produto.tipo, produto.destacado)}
+            image={produto.capa}
+            score={produto.avaliacao}
+            description={produto.descricao}
+          />
+        ))}
+      </RestauranteItens>
+    </RestauranteContainer>
+  )
+}
 
 export default RestauranteList

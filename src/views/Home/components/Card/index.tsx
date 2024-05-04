@@ -13,7 +13,7 @@ export type PropsCard = {
   id: number
   restaurant_name: string
   description: string
-  score: string
+  score: number
   extra_content: string[]
   image: string
 }

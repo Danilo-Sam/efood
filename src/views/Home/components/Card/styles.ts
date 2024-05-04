@@ -74,4 +74,5 @@ export const ButtonCard = styled(Link)`
   position: absolute;
   bottom: 8px;
   left: 8px;
+  border-radius: 4px;
 `

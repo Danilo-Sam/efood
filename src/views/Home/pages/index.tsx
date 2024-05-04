@@ -1,73 +1,51 @@
+import { useEffect, useState } from 'react'
+
 import Header from '../../../components/Header'
 import RestauranteList from '../../../components/RestaurantesList'
-import Produto from '../models/Produto'
 
-import sushi from '../../../assets/images/sushi.png'
 import Footer from '../../../components/Footer'
 
-const produtos: Produto[] = [
-  {
-    id: 1,
-    restaurant_name: 'Hioki Sushi',
-    score: '4.9',
-    extra_content: ['Destaque da semana', 'Japonesa'],
-    image: sushi,
-    description:
-      'A paixão dos nossos talentosos chefs pela cozinha italiana é evidente em cada prato, desde massas caseiras e risotos cremosos até suculentos frutos do mar e carnes tenras. Nosso menu é complementado por uma excelente carta de vinhos, cuidadosamente selecionados para harmonizar com a riqueza dos sabores'
-  },
-  {
-    id: 2,
-    restaurant_name: 'Hioki Sushi',
-    score: '4.9',
-    extra_content: ['Japonesa'],
-    image: sushi,
-    description:
-      'A paixão dos nossos talentosos chefs pela cozinha italiana é evidente em cada prato, desde massas caseiras e risotos cremosos até suculentos frutos do mar e carnes tenras. Nosso menu é complementado por uma excelente carta de vinhos, cuidadosamente selecionados para harmonizar com a riqueza dos sabores'
-  },
-  {
-    id: 3,
-    restaurant_name: 'Hioki Sushi',
-    score: '4.9',
-    extra_content: ['Japonesa'],
-    image: sushi,
-    description:
-      'A paixão dos nossos talentosos chefs pela cozinha italiana é evidente em cada prato, desde massas caseiras e risotos cremosos até suculentos frutos do mar e carnes tenras. Nosso menu é complementado por uma excelente carta de vinhos, cuidadosamente selecionados para harmonizar com a riqueza dos sabores'
-  },
-  {
-    id: 4,
-    restaurant_name: 'Hioki Sushi',
-    score: '4.9',
-    extra_content: ['Japonesa'],
-    image: sushi,
-    description:
-      'A paixão dos nossos talentosos chefs pela cozinha italiana é evidente em cada prato, desde massas caseiras e risotos cremosos até suculentos frutos do mar e carnes tenras. Nosso menu é complementado por uma excelente carta de vinhos, cuidadosamente selecionados para harmonizar com a riqueza dos sabores'
-  },
-  {
-    id: 5,
-    restaurant_name: 'Hioki Sushi',
-    score: '4.9',
-    extra_content: ['Japonesa'],
-    image: sushi,
-    description:
-      'A paixão dos nossos talentosos chefs pela cozinha italiana é evidente em cada prato, desde massas caseiras e risotos cremosos até suculentos frutos do mar e carnes tenras. Nosso menu é complementado por uma excelente carta de vinhos, cuidadosamente selecionados para harmonizar com a riqueza dos sabores'
-  },
-  {
-    id: 6,
-    restaurant_name: 'Hioki Sushi',
-    score: '4.9',
-    extra_content: ['Japonesa'],
-    image: sushi,
-    description:
-      'A paixão dos nossos talentosos chefs pela cozinha italiana é evidente em cada prato, desde massas caseiras e risotos cremosos até suculentos frutos do mar e carnes tenras. Nosso menu é complementado por uma excelente carta de vinhos, cuidadosamente selecionados para harmonizar com a riqueza dos sabores'
+export type Produto = {
+  id: number
+  titulo: string
+  destacado: boolean
+  tipo: string
+  avaliacao: number
+  descricao: string
+  capa: string
+  cardapio: {
+    id: number
+    foto: string
+    preco: number
+    nome: string
+    descricao: string
+    porcao: string
   }
-]
+}
 
-const HomePage = () => (
-  <>
-    <Header typeheader="normal" />
-    <RestauranteList produto={produtos} />
-    <Footer />
-  </>
-)
+const HomePage = () => {
+  const [produto, setProduto] = useState<Produto[]>([])
+
+  useEffect(() => {
+    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
+      .then((res) => res.json())
+      .then((res) => setProduto(res))
+  })
+  return (
+    <>
+      <Header typeheader="normal" />
+      <RestauranteList
+        produto={produto}
+        id={0}
+        restaurant_name={''}
+        description={''}
+        score={0}
+        extra_content={[]}
+        image={''}
+      />
+      <Footer />
+    </>
+  )
+}
 
 export default HomePage
