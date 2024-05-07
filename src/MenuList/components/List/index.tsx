@@ -11,10 +11,23 @@ const List = ({ produto }: PropsList) => (
     {produto.map((produto) => (
       <ListCard
         key={produto.id}
-        id={produto.id}
-        name_product={produto.titulo}
-        image_product={produto.capa}
-        description_product={produto.descricao}
+        produto={{
+          id: produto.id,
+          titulo: produto.titulo,
+          destacado: produto.destacado,
+          tipo: produto.tipo,
+          avaliacao: produto.avaliacao,
+          descricao: produto.descricao,
+          capa: produto.capa,
+          cardapio: {
+            id: produto.cardapio.id,
+            foto: produto.cardapio.foto,
+            preco: produto.cardapio.preco,
+            nome: produto.cardapio.nome,
+            descricao: produto.cardapio.descricao,
+            porcao: produto.cardapio.porcao
+          }
+        }}
       />
     ))}
   </ContainerList>

@@ -2,8 +2,6 @@ import { useState } from 'react'
 
 import { CardList, DescriptionList, TitleList } from './styles'
 import * as styles from './styles'
-// import { useDispatch } from 'react-redux'
-// import { add, activeTheCart } from '../../../store/reducers/Cart'
 import close from '../../../assets/icons/close.png'
 import { Produto } from '../../../views/Home/pages'
 
@@ -12,7 +10,6 @@ type PropsList = {
 }
 
 export default function ListCard({ produto }: PropsList) {
-  // const dispatch = useDispatch()
   const [modal, setModal] = useState(false)
 
   function seeModal() {

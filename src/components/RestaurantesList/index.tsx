@@ -5,12 +5,6 @@ import { Produto } from '../../views/Home/pages'
 
 type Props = {
   produto: Produto[]
-  id: number
-  restaurant_name: string
-  description: string
-  score: number
-  extra_content: string[]
-  image: string
 }
 
 const RestauranteList = ({ produto }: Props) => {
