@@ -5,7 +5,7 @@
 //   price: number
 // }
 
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
 
 // type PurchasePayload = {
 //   products: Product[]
@@ -64,3 +64,7 @@ import { useEffect, useState } from 'react'
 // } = api
 
 // export default api
+
+export default function gdjbhyhg() {
+  console.log('gdjbhyhg')
+}

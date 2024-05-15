@@ -6,7 +6,12 @@ import { Link } from 'react-router-dom'
 export const ImageCard = styled.div<
   Omit<
     PropsCard,
-    'restaurant_name' | 'description' | 'score' | 'extra_content' | 'id'
+    | 'restaurant_name'
+    | 'description'
+    | 'score'
+    | 'extra_content'
+    | 'id'
+    | 'produto'
   >
 >`
   background-image: url(${(props) => props.image});

@@ -8,7 +8,25 @@ function App() {
     <BrowserRouter>
       <GlobalCss />
       <div>
-        <Rotas />
+        <Rotas
+          produto={{
+            id: 0,
+            titulo: '',
+            destacado: false,
+            tipo: '',
+            avaliacao: 0,
+            descricao: '',
+            capa: '',
+            cardapio: {
+              id: 0,
+              foto: '',
+              preco: 0,
+              nome: '',
+              descricao: '',
+              porcao: ''
+            }
+          }}
+        />
       </div>
     </BrowserRouter>
   )
