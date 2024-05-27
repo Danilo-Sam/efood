@@ -87,10 +87,12 @@ export const Card = styled.div`
   @media (max-width: ${breakPoints.desktop}) {
     width: 100%;
   }
+
   @media (max-width: ${breakPoints.tablet}) {
     display: block;
     height: 95%;
   }
+
   div {
     margin-top: 32px;
   }
@@ -154,6 +156,7 @@ export const DivImage = styled.div`
   @media (max-width: ${breakPoints.mobile}) {
     height: calc(80vw - 64px);
   }
+
   img {
     width: 100%;
     height: 100%;
@@ -163,6 +166,7 @@ export const DivContent = styled.div`
   @media (max-width: ${breakPoints.desktop}) {
     width: calc(64px - (40% - 100%));
   }
+
   @media (max-width: ${breakPoints.tablet}) {
     margin: 0px !important;
     width: 100%;
@@ -179,6 +183,8 @@ export const Close = styled.button`
   position: absolute;
   top: 8px;
   right: 8px;
+  cursor: pointer;
+
   img {
     width: 100%;
     height: 100%;

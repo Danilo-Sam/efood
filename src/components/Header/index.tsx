@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 
+import logo from '../../assets/icons/logo.svg'
 import {
   HeaderBanner,
   HeaderContainer,
@@ -7,8 +8,6 @@ import {
   LinkA,
   LinkButton
 } from './styles'
-
-import logo from '../../assets/icons/logo.svg'
 
 export type PropsHeader = {
   typeheader?: string

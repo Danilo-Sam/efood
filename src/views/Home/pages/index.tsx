@@ -13,7 +13,6 @@ export type Produto = {
   descricao: string
   capa: string
   cardapio: {
-    [x: string]: any
     id: number
     foto: string
     preco: number

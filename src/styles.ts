@@ -51,7 +51,7 @@ export const HeaderBar = styled.header`
   margin-botton: 56px;
   top: 0;
 `
-export const Container = styled.div`
+export const ContainerGlobal = styled.div`
   display: block;
   max-width: 1024px;
   width: 100%;

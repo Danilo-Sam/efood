@@ -3,12 +3,9 @@ import { ProductCardContainer } from './styles'
 import * as styles from './styles'
 import Menu from '../../../model/Menu/Menu'
 import close from '../../../assets/icons/close.png'
-// import { useDispatch } from 'react-redux'
-// import { add, activeTheCart } from '../../../store/reducers/Cart'
 import { getDescription } from '../../../utils/function'
 
 export default function Knowmore(menu: Menu) {
-  // const dispatch = useDispatch()
   const [modal, setModal] = useState(false)
 
   function seeModal() {
@@ -18,12 +15,6 @@ export default function Knowmore(menu: Menu) {
       setModal(true)
     }
   }
-
-  // const addItem = () => {
-  //   dispatch(add(menu))
-  //   seeModal()
-  //   dispatch(activeTheCart())
-  // }
 
   return (
     <>

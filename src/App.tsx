@@ -3,31 +3,23 @@ import { BrowserRouter } from 'react-router-dom'
 import { GlobalCss } from './styles'
 import Rotas from './routes'
 
+// const routes = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <HomePage />
+//   },
+//   {
+//     path: '/cardapio/:id',
+//     element: <Cardapio />
+//   }
+// ])
+
 function App() {
   return (
     <BrowserRouter>
       <GlobalCss />
-      <div>
-        <Rotas
-          produto={{
-            id: 0,
-            titulo: '',
-            destacado: false,
-            tipo: '',
-            avaliacao: 0,
-            descricao: '',
-            capa: '',
-            cardapio: {
-              id: 0,
-              foto: '',
-              preco: 0,
-              nome: '',
-              descricao: '',
-              porcao: ''
-            }
-          }}
-        />
-      </div>
+      <Rotas />
+      {/* <RouterProvider router={routes} /> */}
     </BrowserRouter>
   )
 }
