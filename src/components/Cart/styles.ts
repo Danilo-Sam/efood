@@ -163,7 +163,7 @@ export const InpuGroup = styled.div`
     width: 100%;
     height: 32px;
     border-color: transparent;
-    background-color: ${colors.textPrimary};
+    background-color: ${colors.textSecondary};
     margin-top: 8px;
     border: 3px solid transparent;
   }
