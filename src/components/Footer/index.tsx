@@ -26,7 +26,7 @@ export default function Footer() {
         A efood é uma plataforma para divulgação de estabelecimentos, a
         responsabilidade pela entrega, qualidade dos produtos é toda do
         estabelecimento contratado.
-      </p>{' '}
+      </p>
       <br />
       <p>&copy; 2023, Todos os direitos reservados. Danilo Sampaio</p>
     </FooterContainer>

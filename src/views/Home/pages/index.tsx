@@ -1,40 +1,38 @@
 import Header from '../../../components/Header'
-import RestauranteList from '../../../components/RestaurantesList'
-
-import Footer from '../../../components/Footer'
-import { useEffect, useState } from 'react'
-
-export type Produto = {
-  id: number
-  titulo: string
-  destacado: boolean
-  tipo: string
-  avaliacao: number
-  descricao: string
-  capa: string
-  cardapio: {
-    id: number
-    foto: string
-    preco: number
-    nome: string
-    descricao: string
-    porcao: string
-  }
-}
+import { HomeMain } from './styles'
+import Card from '../components/Card'
+import { useGetAllRestaurantsQuery } from '../../../services/api'
 
 const HomePage = () => {
-  const [produto, setProduto] = useState<Produto[]>([])
+  const { data: restaurant } = useGetAllRestaurantsQuery()
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setProduto(res))
-  })
+  function tagArray(primary: string, secondary: boolean): string[] {
+    const array: string[] = []
+    if (secondary === true) {
+      array.push('Destaque da semana')
+      array.push(primary)
+      return array
+    }
+    array.push(primary)
+    return array
+  }
+
   return (
     <>
-      <Header typeheader="normal" />
-      <RestauranteList produto={produto} />
-      <Footer />
+      <Header />
+      <HomeMain className="container">
+        {restaurant?.map((restaurant) => (
+          <Card
+            key={restaurant.id}
+            id={restaurant.id}
+            description={restaurant.descricao}
+            extra_content={tagArray(restaurant.tipo, restaurant.destacado)}
+            image={restaurant.capa}
+            restaurant_name={restaurant.titulo}
+            score={restaurant.avaliacao}
+          />
+        ))}
+      </HomeMain>
     </>
   )
 }

@@ -1,12 +1,21 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { ProductCardContainer } from './styles'
 import * as styles from './styles'
-import Menu from '../../../model/Menu/Menu'
-import close from '../../../assets/icons/close.png'
-import { getDescription } from '../../../utils/function'
+import Menu from '../../../../model/Menu/Menu'
+import close from '../../../../assets/icons/close.png'
+import { getDescription } from '../../../../utils/function'
+import { activeTheCart, add } from '../../../../store/reducers/Cart'
 
-export default function Knowmore(menu: Menu) {
+export default function ProductCard(menu: Menu) {
+  const dispatch = useDispatch()
   const [modal, setModal] = useState(false)
+
+  const addItem = () => {
+    dispatch(add(menu))
+    seeModal()
+    dispatch(activeTheCart())
+  }
 
   function seeModal() {
     if (modal) {
@@ -41,7 +50,7 @@ export default function Knowmore(menu: Menu) {
                 <span>Serve: de {menu.porcao}</span>
               </styles.Paragraph>
               <styles.ToAdd
-                // onClick={addItem}
+                onClick={addItem}
                 title="Adicionar ao carrinho"
                 type="button"
               >

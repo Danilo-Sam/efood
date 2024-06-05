@@ -1,26 +1,34 @@
-import { BrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { Provider } from 'react-redux'
 
+import { store } from './store'
 import { GlobalCss } from './styles'
-import Rotas from './routes'
+import HomePage from './views/Home/pages'
+import Cart from './components/Cart'
+import Footer from './components/Footer'
+import KnowMorePage from './views/KnowMore/pages'
 
-// const routes = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <HomePage />
-//   },
-//   {
-//     path: '/cardapio/:id',
-//     element: <Cardapio />
-//   }
-// ])
+const routes = createBrowserRouter([
+  {
+    path: '/',
+    element: <HomePage />
+  },
+  {
+    path: '/knowmore/:id',
+    element: <KnowMorePage />
+  }
+])
 
 function App() {
   return (
-    <BrowserRouter>
-      <GlobalCss />
-      <Rotas />
-      {/* <RouterProvider router={routes} /> */}
-    </BrowserRouter>
+    <>
+      <Provider store={store}>
+        <GlobalCss />
+        <RouterProvider router={routes} />
+        <Footer />
+        <Cart />
+      </Provider>
+    </>
   )
 }
 

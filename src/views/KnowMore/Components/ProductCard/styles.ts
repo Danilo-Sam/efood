@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { colors, breakPoints } from '../../../styles'
+import { colors, breakPoints } from '../../../../styles'
 
 export const ProductCardContainer = styled.div`
   background-color: ${colors.textPrimary};
@@ -45,6 +45,7 @@ export const ProductCardContainer = styled.div`
     font-weight: bold;
     position: absolute;
     bottom: 8px;
+    cursor: pointer;
   }
 
   @media (max-width: 500px) {
@@ -127,6 +128,7 @@ export const ToAdd = styled.button`
   font-weight: bold;
   font-size: 14px;
   border: none;
+  cursor: pointer;
 
   @media (max-width: ${breakPoints.tablet}) {
     margin: 0 auto;

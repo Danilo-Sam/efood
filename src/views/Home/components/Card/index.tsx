@@ -42,7 +42,7 @@ export default function Card({
         </Score>
       </NameAndScore>
       <p>{description}</p>
-      <ButtonCard to={`/Cardapio/${id}`}>Saiba mais</ButtonCard>
+      <ButtonCard to={`/KnowMore/${id}`}>Saiba mais</ButtonCard>
     </ContainerCard>
   )
 }
