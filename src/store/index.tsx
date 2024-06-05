@@ -13,7 +13,3 @@ export const store = configureStore({
 })
 
 export type RootReducer = ReturnType<typeof store.getState>
-
-// export default function gdjbhyhg() {
-//   console.log('gdjbhyhg')
-// }

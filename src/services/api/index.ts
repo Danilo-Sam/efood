@@ -62,7 +62,3 @@ export const {
 } = api
 
 export default api
-
-// export default function gdjbhyhg() {
-//   console.log('gdjbhyhg')
-// }

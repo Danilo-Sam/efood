@@ -36,7 +36,3 @@ const cartSlice = createSlice({
 export const { add, remove, activeTheCart, clear } = cartSlice.actions
 
 export default cartSlice.reducer
-
-// export default function gdjbhyhg() {
-//   console.log('gdjbhyhg')
-// }

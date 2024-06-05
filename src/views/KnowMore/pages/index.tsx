@@ -37,17 +37,6 @@ const KnowMorePage = () => {
             porcao={product.porcao}
           />
         ))}
-        {/* {menu.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            porcao={product.porcao}
-            preco={product.preco}
-            nome={product.nome}
-            foto={product.foto}
-            descricao={product.descricao}
-          />
-        ))} */}
       </MainKnowMore>
     </div>
   )
