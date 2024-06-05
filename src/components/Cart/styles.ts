@@ -20,6 +20,7 @@ export const Button = styled.button`
   border: none;
   background-color: ${colors.textColor};
   margin-bottom: 8px;
+  cursor: pointer;
 `
 
 export const Container = styled.div`
@@ -71,6 +72,7 @@ export const Aside = styled.aside`
   > ${Button} {
     margin: 0 8px;
   }
+
   > p {
     line-height: 22px;
     font-size: 14px;
@@ -93,6 +95,7 @@ export const Figure = styled.figure`
   width: 80px;
   height: 80px;
   margin-right: 8px;
+
   img {
     width: 100%;
     height: 100%;
@@ -100,6 +103,7 @@ export const Figure = styled.figure`
 `
 export const Content = styled.div`
   text-align: left;
+
   h2 {
     font-size: 18px;
     font-weight: bolder;
@@ -119,6 +123,7 @@ export const ButtonCard = styled.button`
   position: absolute;
   bottom: 8px;
   right: 8px;
+  cursor: pointer;
 
   img {
     width: 100%;
@@ -136,6 +141,7 @@ export const FinalOrder = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: 16px;
+
     p {
       display: flex;
       font-weight: bold;
@@ -184,6 +190,7 @@ export const Row = styled.div`
   column-gap: 34px;
   align-items: flex-end;
   grid-template-columns: 1fr 1fr;
+
   input{
     margin 0px;
   }
@@ -193,6 +200,7 @@ export const RowCard = styled.div`
   column-gap: 30px;
   align-items: flex-end;
   grid-template-columns: 228px 87px;
+
   &.custom {
     grid-template-columns: 1fr 1fr;
   }
