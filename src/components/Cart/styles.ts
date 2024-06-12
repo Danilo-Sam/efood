@@ -171,7 +171,7 @@ export const InpuGroup = styled.div`
     border-color: transparent;
     background-color: ${colors.textSecondary};
     margin-top: 8px;
-    border: 3px solid transparent;
+    border: 1px solid transparent;
   }
 
   label {
@@ -181,7 +181,7 @@ export const InpuGroup = styled.div`
   }
 
   .error {
-    border-color: red;
+    border: 1px solid red;
   }
 `
 

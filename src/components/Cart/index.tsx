@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react'
 import * as Yup from 'yup'
 import InputMask from 'react-input-mask'
@@ -20,12 +21,12 @@ import {
 import { useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
 import { useDispatch } from 'react-redux'
-
 import { usePurchaseMutation } from '../../services/api'
 import { activeTheCart, clear } from '../../store/reducers/Cart'
 import { formatPrice } from '../../utils/function'
 import { remove } from '../../store/reducers/Cart'
 import { useFormik } from 'formik'
+import { Navigate } from 'react-router-dom'
 
 const Cart = () => {
   const { activeTheCart: activeTheCartValue, items } = useSelector(
@@ -34,20 +35,20 @@ const Cart = () => {
   const [purchase, { data, isSuccess }] = usePurchaseMutation()
   const [viewsCartForms, setViewsCartForms] = useState(true)
   const [viewsForm, setViewsForm] = useState(true)
-  const [active, setAcitve] = useState(false)
-  const [viewaFinish, setViewaFinish] = useState(true)
+  const [active, setActive] = useState(false)
+  const [viewsFinish, setViewaFinish] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (activeTheCartValue) {
       setTimeout(() => {
-        setAcitve(true)
+        setActive(true)
       }, 500)
     }
   }, [activeTheCartValue])
 
   function getActiveTheCart() {
-    setAcitve(false)
+    setActive(false)
     setTimeout(() => {
       dispatch(activeTheCart())
     }, 1000)
@@ -60,9 +61,9 @@ const Cart = () => {
   }, [isSuccess])
 
   const getTotalPrice = () => {
-    return items.reduce((acumulador, valorAtual) => {
-      if (valorAtual.preco) {
-        return (acumulador += valorAtual.preco)
+    return items.reduce((accumulator, currentItem) => {
+      if (currentItem.preco) {
+        return (accumulator += currentItem.preco)
       }
       return 0
     }, 0)
@@ -72,7 +73,7 @@ const Cart = () => {
     dispatch(remove(id))
   }
 
-  const Clear = () => {
+  const clearCart = () => {
     dispatch(clear())
     getActiveTheCart()
     setViewsForm(true)
@@ -80,19 +81,12 @@ const Cart = () => {
     setViewsCartForms(true)
   }
 
-  const checkInputHasError = (fieldName: string) => {
-    const isTrouched = fieldName in form.touched
+  const checkInputHasError = (fieldName: keyof typeof form.values) => {
+    const isTouched = fieldName in form.touched
     const isInvalid = fieldName in form.errors
-    const hasError = isTrouched && isInvalid
-    return hasError
-  }
+    const hasError = isTouched && isInvalid
 
-  const Delivery = () => {
-    if (items.length > 0) {
-      setViewsCartForms(false)
-    } else {
-      alert('Adicione um pedido')
-    }
+    return hasError
   }
 
   const form = useFormik({
@@ -112,35 +106,33 @@ const Cart = () => {
     validationSchema: Yup.object({
       name: Yup.string()
         .required('Nome completo é obrigatório')
-        .min(5, 'Minimo 5 caracteres'),
+        .min(5, 'Mínimo 5 caracteres'),
       address: Yup.string()
         .required('Digite o nome do endereço')
-        .min(5, 'Minimo 5 caracteres'),
+        .min(5, 'Mínimo 5 caracteres'),
       city: Yup.string()
         .required('Digite o nome da cidade')
-        .min(1, 'Minimo 1 caracteres'),
+        .min(1, 'Mínimo 1 caractere'),
       cep: Yup.string()
-        .required('Digite seu cep')
-        .min(8, 'Minimo 8 caracteres'),
+        .required('Digite seu CEP')
+        .min(8, 'Mínimo 8 caracteres'),
       addressNumber: Yup.string()
-        .required('Digite o numero do endereço')
-        .min(1, 'Minimo 1 caracteres'),
-      complement: Yup.string().min(1, 'Minimo 1 caracteres'),
+        .required('Digite o número do endereço')
+        .min(1, 'Mínimo 1 caractere'),
+      complement: Yup.string().min(1, 'Mínimo 1 caractere'),
       CardName: Yup.string()
-        .required('Digite o nome da cidade')
-        .min(5, 'Minimo 1 caracteres'),
+        .required('Digite o nome no cartão')
+        .min(5, 'Mínimo 5 caracteres'),
       CardNumber: Yup.string()
-        .required('Digite o nome da cidade')
-        .min(5, 'Minimo 5 caracteres'),
-      cvv: Yup.string()
-        .required('Digite o nome da cidade')
-        .min(3, 'Minimo 3 caracteres'),
+        .required('Digite o número do cartão')
+        .min(16, 'Mínimo 16 caracteres'),
+      cvv: Yup.string().required('Digite o CVV').min(3, 'Mínimo 3 caracteres'),
       expiresMonth: Yup.string()
-        .required('Digite O mês de vencimento ')
-        .min(2, 'Minimo 2 caracteres'),
+        .required('Digite o mês de vencimento')
+        .min(2, 'Mínimo 2 caracteres'),
       expiresYear: Yup.string()
-        .required('Digite O ano de vencimento ')
-        .min(2, 'Minimo 2 caracteres')
+        .required('Digite o ano de vencimento')
+        .min(2, 'Mínimo 2 caracteres')
     }),
     onSubmit: (values) => {
       purchase({
@@ -172,6 +164,23 @@ const Cart = () => {
       })
     }
   })
+
+  const continueToPayment = () => {
+    form.setTouched({
+      name: true,
+      address: true,
+      city: true,
+      cep: true,
+      addressNumber: true,
+      complement: true
+    } as any)
+
+    form.validateForm().then((errors) => {
+      if (Object.keys(errors).length === 0) {
+        setViewsForm(false)
+      }
+    })
+  }
 
   return (
     <Container className={activeTheCartValue ? 'container--isactive' : ''}>
@@ -205,17 +214,21 @@ const Cart = () => {
                 <p>Valor Total</p>
                 <p>{formatPrice(getTotalPrice())}</p>
               </div>
-              <Button onClick={Delivery}>Continuar com a entrega</Button>
+              <Button onClick={() => setViewsCartForms(false)}>
+                Continuar com a entrega
+              </Button>
             </FinalOrder>
           </>
         ) : (
           <>
-            {viewaFinish ? (
+            {viewsFinish ? (
               <>
                 <h3>
                   {viewsForm
                     ? 'Entrega'
-                    : `Pagamento - Valor a pagar R$ ${getTotalPrice()}`}
+                    : `Pagamento - Valor a pagar R$ ${formatPrice(
+                        getTotalPrice()
+                      )}`}
                 </h3>
                 <Form onSubmit={form.handleSubmit}>
                   {viewsForm ? (
@@ -230,6 +243,9 @@ const Cart = () => {
                           id="name"
                           type="text"
                         />
+                        {checkInputHasError('name') && (
+                          <span>{form.errors.name}</span>
+                        )}
                       </InpuGroup>
                       <InpuGroup>
                         <label htmlFor="address">Endereço</label>
@@ -243,6 +259,9 @@ const Cart = () => {
                           id="address"
                           type="text"
                         />
+                        {checkInputHasError('address') && (
+                          <span>{form.errors.address}</span>
+                        )}
                       </InpuGroup>
                       <InpuGroup>
                         <label htmlFor="city">Cidade</label>
@@ -254,6 +273,9 @@ const Cart = () => {
                           id="city"
                           type="text"
                         />
+                        {checkInputHasError('city') && (
+                          <span>{form.errors.city}</span>
+                        )}
                       </InpuGroup>
                       <Row>
                         <InpuGroup>
@@ -267,6 +289,9 @@ const Cart = () => {
                             id="cep"
                             type="text"
                           />
+                          {checkInputHasError('cep') && (
+                            <span>{form.errors.cep}</span>
+                          )}
                         </InpuGroup>
                         <InpuGroup>
                           <label htmlFor="addressNumber">Número</label>
@@ -280,6 +305,9 @@ const Cart = () => {
                             id="addressNumber"
                             type="text"
                           />
+                          {checkInputHasError('addressNumber') && (
+                            <span>{form.errors.addressNumber}</span>
+                          )}
                         </InpuGroup>
                       </Row>
                       <InpuGroup>
@@ -296,11 +324,14 @@ const Cart = () => {
                           id="complement"
                           type="text"
                         />
+                        {checkInputHasError('complement') && (
+                          <span>{form.errors.complement}</span>
+                        )}
                       </InpuGroup>
                       <Button
                         className="margin-top"
                         type="button"
-                        onClick={() => setViewsForm(false)}
+                        onClick={continueToPayment}
                       >
                         Continuar com o pagamento
                       </Button>
@@ -325,6 +356,9 @@ const Cart = () => {
                           id="CardName"
                           type="text"
                         />
+                        {checkInputHasError('CardName') && (
+                          <span>{form.errors.CardName}</span>
+                        )}
                       </InpuGroup>
                       <RowCard>
                         <InpuGroup>
@@ -340,6 +374,9 @@ const Cart = () => {
                             id="CardNumber"
                             type="text"
                           />
+                          {checkInputHasError('CardNumber') && (
+                            <span>{form.errors.CardNumber}</span>
+                          )}
                         </InpuGroup>
                         <InpuGroup>
                           <label htmlFor="cvv">CVV</label>
@@ -352,6 +389,9 @@ const Cart = () => {
                             id="cvv"
                             type="text"
                           />
+                          {checkInputHasError('cvv') && (
+                            <span>{form.errors.cvv}</span>
+                          )}
                         </InpuGroup>
                       </RowCard>
                       <Row>
@@ -370,6 +410,9 @@ const Cart = () => {
                             id="expiresMonth"
                             type="text"
                           />
+                          {checkInputHasError('expiresMonth') && (
+                            <span>{form.errors.expiresMonth}</span>
+                          )}
                         </InpuGroup>
                         <InpuGroup>
                           <label htmlFor="expiresYear">Ano do vencimento</label>
@@ -384,12 +427,15 @@ const Cart = () => {
                             id="expiresYear"
                             type="text"
                           />
+                          {checkInputHasError('expiresYear') && (
+                            <span>{form.errors.expiresYear}</span>
+                          )}
                         </InpuGroup>
                       </Row>
                       <Button className="margin-top" type="submit">
                         Finalizar pagamento
                       </Button>
-                      <Button type="submit" onClick={() => setViewsForm(true)}>
+                      <Button type="button" onClick={() => setViewsForm(true)}>
                         Voltar para a edição de endereço
                       </Button>
                     </>
@@ -400,7 +446,7 @@ const Cart = () => {
               <>
                 <h3>Pedido realizado - {data?.orderId}</h3>
                 <p>
-                  stamos felizes em informar que seu pedido já está em processo
+                  Estamos felizes em informar que seu pedido já está em processo
                   de preparação e, em breve, será entregue no endereço
                   fornecido. Gostaríamos de ressaltar que nossos entregadores
                   não estão autorizados a realizar cobranças extras. Lembre-se
@@ -409,7 +455,7 @@ const Cart = () => {
                   refeição. Esperamos que desfrute de uma deliciosa e agradável
                   experiência gastronômica. Bom apetite!
                 </p>
-                <Button type="button" onClick={Clear}>
+                <Button type="button" onClick={clearCart}>
                   Concluir
                 </Button>
               </>
