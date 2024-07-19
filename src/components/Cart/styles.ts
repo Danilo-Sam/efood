@@ -64,7 +64,7 @@ export const Aside = styled.aside`
   h3 {
     margin-bottom: 16px;
     font-size: 16px;
-    font-weight: bolder;
+    font-weight: bold;
     color: ${colors.textSecondary};
     margin-left: 8px;
   }
