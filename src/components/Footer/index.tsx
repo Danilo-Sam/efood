@@ -28,7 +28,7 @@ export default function Footer() {
         estabelecimento contratado.
       </p>
       <br />
-      <p>&copy; 2023, Todos os direitos reservados. Danilo Sampaio</p>
+      <p>&copy; 2024, Todos os direitos reservados. Danilo Sampaio</p>
     </FooterContainer>
   )
 }
