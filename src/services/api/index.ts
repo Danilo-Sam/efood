@@ -36,7 +36,7 @@ type PurchaseResponse = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://fake-api-tau.vercel.app/api/efood'
+    baseUrl: 'https://api-ebac.vercel.app/api/efood'
   }),
   endpoints: (builder) => ({
     getAllRestaurants: builder.query<Restaurant[], void>({
@@ -60,5 +60,5 @@ export const {
   useGetRestaurantByIdQuery,
   usePurchaseMutation
 } = api
-
+console.log(api)
 export default api

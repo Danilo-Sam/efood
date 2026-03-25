@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { breakPoints } from '../../../styles'
+import { breakPoints, colors } from '../../../styles'
 
 export const HomeMain = styled.main`
   padding-top: 70px;
@@ -18,4 +18,14 @@ export const HomeMain = styled.main`
     grid-template-columns: 1fr;
     row-gap: 48px;
   }
+`
+
+export const Carregando = styled.p`
+  font-size: 24px;
+  font-weight: 500;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${colors.textPrimary};
 `
