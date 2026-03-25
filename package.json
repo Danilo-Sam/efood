@@ -1,7 +1,4 @@
 {
-  "engines": {
-    "node": "24.x"
-  },
   "name": "efood",
   "version": "0.1.0",
   "private": true,
@@ -11,6 +8,7 @@
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
+    "@types/node": "24.13.1",
     "@types/react-dom": "^19.2.3",
     "formik": "^2.4.9",
     "react": "^19.2.4",
